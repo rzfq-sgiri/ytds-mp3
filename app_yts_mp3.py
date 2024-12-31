@@ -42,7 +42,7 @@ def display_disclaimer():
         
         **Disclaimer**  
         This application is provided as is for educational and informational purposes only.  
-        The author, Risz-Sgr, is not responsible for any misuse of this tool.  
+        The author ``Risz-Sgr``, is not responsible for any misuse of this tool.  
         Please ensure compliance with YouTube's terms of service and copyright laws when using this application.  
         ver:0.4
         """
