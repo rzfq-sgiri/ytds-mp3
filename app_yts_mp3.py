@@ -2,19 +2,19 @@ import streamlit as st
 import yt_dlp
 import os
 
+
 # Set page title and icon
 st.set_page_config(
     page_title="YouTube MP3 Downloader",  # Ganti dengan nama aplikasi anda
     page_icon="🎥",  # Ganti dengan emoji atau ikon unicode lain
 )
 
-
 def download_with_ytdlp(url):
     try:
         ydl_opts = {
             'format': 'bestaudio/best',  # Pilih format audio terbaik
             'postprocessors': [{
-                'key': 'FFmpegAudioConvertor',  # Menggunakan FFmpeg untuk menukar format
+                'key': 'FFmpegExtractAudio',  # Menggunakan FFmpeg untuk menukar kepada MP3
                 'preferredcodec': 'mp3',  # Tukar ke MP3
                 'preferredquality': '192',  # Kualiti MP3
             }],
@@ -23,7 +23,7 @@ def download_with_ytdlp(url):
         st.write("Downloading with yt-dlp...")
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
-            filename = ydl.prepare_filename(info)
+            filename = os.path.splitext(ydl.prepare_filename(info))[0] + ".mp3"
             st.success("Download complete with yt-dlp!")
             return filename
     except Exception as e:
@@ -47,3 +47,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
