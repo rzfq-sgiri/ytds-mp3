@@ -30,7 +30,7 @@ def download_with_ytdlp(url):
             st.success("Download complete!")
             return filename
     except Exception as e:
-        st.error(f"yt-dlp failed: {e}")
+        st.error(f"Download Failed : {e}")
         st.write(f"Details: {e.__class__.__name__} - {str(e)}")
         return None
     
