@@ -23,11 +23,11 @@ def download_with_ytdlp(url):
             'outtmpl': 'downloads/%(title)s.%(ext)s',
             'ffmpeg_location': ffmpeg_path,  # Gunakan FFmpeg yang dimuat turun
         }
-        st.write("Downloading with yt-dlp...")
+        st.write("Downloading ...")
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
             filename = os.path.splitext(ydl.prepare_filename(info))[0] + ".mp3"
-            st.success("Download complete with yt-dlp!")
+            st.success("Download complete!")
             return filename
     except Exception as e:
         st.error(f"yt-dlp failed: {e}")
