@@ -2,6 +2,13 @@ import streamlit as st
 import yt_dlp
 import os
 
+# Set page title and icon
+st.set_page_config(
+    page_title="YouTube MP3 Downloader",  # Ganti dengan nama aplikasi anda
+    page_icon="🎥",  # Ganti dengan emoji atau ikon unicode lain
+)
+
+
 def download_with_ytdlp(url):
     try:
         ydl_opts = {
