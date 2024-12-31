@@ -44,13 +44,22 @@ def display_disclaimer():
         This application is provided as is for educational and informational purposes only.  
         The author, Risz-Sgr, is not responsible for any misuse of this tool.  
         Please ensure compliance with YouTube's terms of service and copyright laws when using this application.  
-        ver:0.2
+        ver:0.3
         """
     )
 
-
+def show_error_menu():
+    st.warning("It seems there was an error. Here are some alternative options:")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.button("Try Again")
+    with col2:
+        if st.button("Open Alternative URL (Video Downloader)"):
+            js = "window.open('https://5g2rzdeptz6wrltb2fgeul.streamlit.app/')"
+            st.write(f'<script>{js}</script>', unsafe_allow_html=True)
+            
 def main():
-    st.title("YouTube Audio Downloader (MP3)")
+    st.title("YouTube MP3 Downloader with Error Handling")
     url = st.text_input("Enter the YouTube video URL:")
     if st.button("Download"):
         if url:
@@ -63,6 +72,8 @@ def main():
                         file_name=os.path.basename(filename),
                         mime="audio/mp3"
                     )
+            else:
+                show_error_menu()
 
 if __name__ == "__main__":
     main()
