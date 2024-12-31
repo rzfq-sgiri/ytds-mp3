@@ -1,6 +1,7 @@
 import streamlit as st
 import yt_dlp
 import os
+import imageio_ffmpeg as ffmpeg  # Untuk muat turun automatik
 
 
 # Set page title and icon
@@ -11,6 +12,7 @@ st.set_page_config(
 
 def download_with_ytdlp(url):
     try:
+        ffmpeg_path = ffmpeg.get_ffmpeg_exe()  # Muat turun FFmpeg jika tidak ada
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
@@ -19,17 +21,13 @@ def download_with_ytdlp(url):
                 'preferredquality': '192',
             }],
             'outtmpl': 'downloads/%(title)s.%(ext)s',
-            'http_headers': {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            },
-            # Uncomment if you want to use a proxy
-            # 'proxy': 'http://your_proxy_ip:port',
+            'ffmpeg_location': ffmpeg_path,  # Gunakan FFmpeg yang dimuat turun
         }
-        st.write("Downloading...")
+        st.write("Downloading with yt-dlp...")
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
             filename = os.path.splitext(ydl.prepare_filename(info))[0] + ".mp3"
-            st.success("Download complete!")
+            st.success("Download complete with yt-dlp!")
             return filename
     except Exception as e:
         st.error(f"yt-dlp failed: {e}")
@@ -44,8 +42,8 @@ def display_disclaimer():
         **Disclaimer**  
         This application is provided as is for educational and informational purposes only.  
         The author, Risz-Sgr, is not responsible for any misuse of this tool.  
-        Please ensure compliance with YouTube's terms of service and copyright laws when using this application. 
-        ver: 0.0
+        Please ensure compliance with YouTube's terms of service and copyright laws when using this application.  
+        ver:0.1
         """
     )
 
@@ -67,7 +65,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-        # Call this function at the end of the app
     display_disclaimer()
-
-
