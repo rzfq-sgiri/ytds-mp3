@@ -69,7 +69,7 @@ def show_error_menu():
             
 def main():
     st.title("YouTube | TikTok MP3 Downloader")
-    url = st.text_input("Enter the YouTube video URL:")
+    url = st.text_input("Enter the URL:")
     if st.button("Download"):
         if url:
             filename = download_with_ytdlp(url)
