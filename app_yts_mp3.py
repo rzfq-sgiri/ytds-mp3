@@ -68,7 +68,7 @@ def show_error_menu():
 
             
 def main():
-    st.title("YouTube MP3 Downloader")
+    st.title("YouTube | TikTok MP3 Downloader")
     url = st.text_input("Enter the YouTube video URL:")
     if st.button("Download"):
         if url:
