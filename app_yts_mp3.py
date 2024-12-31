@@ -6,7 +6,7 @@ import imageio_ffmpeg as ffmpeg  # Untuk muat turun automatik
 
 # Set page title and icon
 st.set_page_config(
-    page_title="YouTube MP3 Downloader",  # Ganti dengan nama aplikasi anda
+    page_title="YouTube | TikTok MP3 Downloader",  # Ganti dengan nama aplikasi anda
     page_icon="🎥",  # Ganti dengan emoji atau ikon unicode lain
 )
 
