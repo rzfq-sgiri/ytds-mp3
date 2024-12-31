@@ -44,7 +44,7 @@ def display_disclaimer():
         This application is provided as is for educational and informational purposes only.  
         The author, Risz-Sgr, is not responsible for any misuse of this tool.  
         Please ensure compliance with YouTube's terms of service and copyright laws when using this application.  
-        ver:0.3
+        ver:0.4
         """
     )
 
@@ -52,11 +52,20 @@ def show_error_menu():
     st.warning("It seems there was an error. Here are some alternative options:")
     col1, col2 = st.columns(2)
     with col1:
-        st.button("Try Again")
+        if st.button("Try Again"):
+            st.experimental_rerun()  # Reload the app to retry
     with col2:
-        if st.button("Open Alternative URL (Video Downloader)"):
-            js = "window.open('https://5g2rzdeptz6wrltb2fgeul.streamlit.app/')"
-            st.write(f'<script>{js}</script>', unsafe_allow_html=True)
+        st.markdown(
+            """
+            <a href="https://5g2rzdeptz6wrltb2fgeul.streamlit.app/" target="_blank">
+            <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            Open Alternative URL (Video Downloader)
+            </button>
+            </a>
+            """,
+            unsafe_allow_html=True,
+        )
+
             
 def main():
     st.title("YouTube MP3 Downloader")
