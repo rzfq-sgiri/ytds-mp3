@@ -59,7 +59,7 @@ def show_error_menu():
             st.write(f'<script>{js}</script>', unsafe_allow_html=True)
             
 def main():
-    st.title("YouTube MP3 Downloader with Error Handling")
+    st.title("YouTube MP3 Downloader")
     url = st.text_input("Enter the YouTube video URL:")
     if st.button("Download"):
         if url:
